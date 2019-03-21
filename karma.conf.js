@@ -25,9 +25,16 @@ module.exports = function(config) {
             },
         ],
         preprocessors: {
-            "src/**/!(*.test).js": ["coverage"]
+            "src/**/!(*.test).js": ["karma-coverage-istanbul-instrumenter"]
         },
-        reporters: ["progress", "coverage"],
+        coverageIstanbulInstrumenter: {
+            esModules: true
+        },
+        coverageIstanbulReporter: {
+            reports: ["html"],
+            dir: "coverage",
+        },
+        reporters: ["progress", "coverage-istanbul"],
         port: 9876,
         colors: true,
         logLevel: config.LOG_DEBUG,
