@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "isolatedModules": true,
+    "sourceMap": true,
+    "outDir": "./dist/",
+    "allowJs": true,
+    "types": [],
+    "moduleResolution": "classic"
+  },
+  "include": ["src", "typings", "tests"],
+  "compileOnSave": true
+}

@@ -1,14 +1,14 @@
 module.exports = function(config) {
     const configuration = {
         basePath: "",
-        frameworks: ["mocha", "chai"],
+        frameworks: ["mocha", "chai", "karma-typescript"],
         files: [
             {
-                pattern: "src/**/*.test.@(mjs|js)",
+                pattern: "src/**/*.test.@(ts|mjs|js)",
                 type: "module",
             },
             {
-                pattern: "src/**/*.@(mjs|js|map)",
+                pattern: "src/**/*.@(ts|mjs|js)",
                 included: false,
             },
             {
@@ -16,16 +16,28 @@ module.exports = function(config) {
                 included: false,
             },
             {
-                pattern: "tests/**/*.test.@(mjs|js)",
+                pattern: "tests/**/*.test.@(ts|mjs|js)",
                 type: "module",
             },
             {
-                pattern: "tests/**/*.@(mjs|js)",
+                pattern: "tests/**/*.@(ts|mjs|js)",
                 included: false,
             },
         ],
         preprocessors: {
-            "src/**/!(*.test).js": ["karma-coverage-istanbul-instrumenter"]
+            "src/**/*.test.ts": ["karma-typescript"],
+            "src/**/!(*.test).ts": ["karma-typescript", "karma-coverage-istanbul-instrumenter"],
+            "src/**/!(*.test).js": ["karma-coverage-istanbul-instrumenter"],
+            "tests/**/*.ts": ["karma-typescript"],
+        },
+        karmaTypescriptConfig: {
+            bundlerOptions: {
+                addNodeGlobals: false,
+            },
+            coverageOptions: {
+                instrumentation: false,
+            },
+            tsconfig: "./tsconfig.json",
         },
         coverageIstanbulInstrumenter: {
             esModules: true

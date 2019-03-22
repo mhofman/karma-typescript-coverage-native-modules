@@ -1,9 +1,10 @@
 import { expect, describe, it } from "../tests/setup.js";
 
+import { HelloService } from "./hello-service.interface.js";
 import { HelloComponent } from "./hello.component.js";
 
-class MockHelloService {
-    sayHello() {
+class MockHelloService implements HelloService {
+    public sayHello(): string {
         return "Hello world!";
     }
 }
