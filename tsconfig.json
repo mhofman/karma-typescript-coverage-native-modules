@@ -9,10 +9,10 @@
     "isolatedModules": true,
     "sourceMap": true,
     "outDir": "./dist/",
-    "allowJs": true,
+    "allowJs": false,
     "types": [],
     "moduleResolution": "classic"
   },
-  "include": ["src", "typings", "tests"],
+  "include": ["src", "tests"],
   "compileOnSave": true
 }

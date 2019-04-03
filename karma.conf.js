@@ -1,3 +1,12 @@
+let coveragePreprocessors = ["karma-coverage-istanbul-instrumenter"];
+let browsers = ["ChromeHeadless"];
+let singleRun = true;
+if (process.argv.some(arg => arg === "--debug")) {
+    coveragePreprocessors = [];
+    browsers = ["Chrome"];
+    singleRun = false;
+}
+
 module.exports = function(config) {
     const configuration = {
         basePath: "",
@@ -26,8 +35,8 @@ module.exports = function(config) {
         ],
         preprocessors: {
             "src/**/*.test.ts": ["karma-typescript"],
-            "src/**/!(*.test).ts": ["karma-typescript", "karma-coverage-istanbul-instrumenter"],
-            "src/**/!(*.test).js": ["karma-coverage-istanbul-instrumenter"],
+            "src/**/!(*.test).ts": ["karma-typescript", ...coveragePreprocessors],
+            "src/**/!(*.test).js": [...coveragePreprocessors],
             "tests/**/*.ts": ["karma-typescript"],
         },
         karmaTypescriptConfig: {
@@ -46,14 +55,13 @@ module.exports = function(config) {
             reports: ["html"],
             dir: "coverage",
         },
-        reporters: ["progress", "coverage-istanbul"],
+        reporters: ["mocha", "coverage-istanbul"],
         port: 9876,
         colors: true,
-        logLevel: config.LOG_DEBUG,
         autoWatch: true,
-        singleRun: true,
+        singleRun,
         concurrency: Infinity,
-        browsers: ["ChromeHeadless"]
+        browsers
     };
 
     config.set(configuration);

@@ -1,0 +1,4 @@
+-r tests/setup.node.js
+-r ts-node/register
+src/**/*.test.ts
+tests/**/*.test.ts
