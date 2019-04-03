@@ -7,7 +7,7 @@
     "test": "npm run test:browser && npm run test:node",
     "test:browser": "karma start",
     "test:browser:debug": "karma start --debug",
-    "test:node": "mocha -r esm --opts ./mocha.opts"
+    "test:node": "node -r esm -r ./tests/setup.node.js node_modules/mocha/bin/_mocha --opts ./mocha.opts"
   },
   "author": "Mathieu Hofman",
   "repository": {

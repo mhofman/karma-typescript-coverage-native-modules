@@ -1,4 +1,2 @@
--r tests/setup.node.js
--r ts-node/register
-src/**/*.test.ts
-tests/**/*.test.ts
+src/**/*.test.@(ts|mjs|js)
+tests/**/*.test.@(ts|mjs|js)
